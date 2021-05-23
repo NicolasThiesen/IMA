@@ -1,0 +1,75 @@
+#:kivy 2.0.0
+#:import Factory kivy.factory.Factory
+
+<Button>:
+    font_size: 20
+    height: 50
+    width: 50
+
+<Alert@Popup>:
+    id: "alert"
+    auto_dismiss: False
+    title: "Erro"
+    size_hint: 0.6, 0.4
+    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Você precisa escolher um Perfil antes de prosseguir"
+        Button:
+            text: "Ok"
+            font_size: 20
+            on_release: root.dismiss()
+            size_hint: None, None
+            height: 40
+            width: 60
+            pos_hint: {"center_x": 0.5}
+
+
+<InitialScreen>
+    BoxLayout:
+        orientation: "vertical"
+        padding: 75
+        spacing: 30
+        Label:
+            markup: True
+            font_size: 25
+            text: "[b]Automação de Mapeamento de Infraestrutura[/b]"
+        Image:
+            source: "assets/logo-solvimm.png"
+            allow_stretch: True
+        GridLayout:
+            cols: 2
+            Label:
+                text: "Escolha um Perfil"
+                font_size: 20
+            Spinner:
+                id: spinner_id
+                text: "Profile"
+                values: []
+                on_text: root.spinner_clicked(spinner_id.text)
+                size_hint: None, None
+                height: 75
+                width: 300
+                pos_hint: {"center_x": .5, "center_y": .5}
+        Button:
+            text: "Entrar"
+            on_release: root.handle_enter(Factory.Alert(),root)
+
+<SecondScreen>
+    name: "second"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        padding: 100
+        spacing: 50
+        Image:
+            source: "assets/logo-solvimm.png"
+            allow_stretch: True
+        Spinner:
+            id: spinner_id
+            text: "Profile"
+            values: []
+            on_text: root.spinner_clicked(spinner_id.text)
+        Label:
+            text: ""
