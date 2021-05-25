@@ -1,4 +1,4 @@
 from kivy.uix.screenmanager import Screen
 
-class SecondScreen(Screen):
+class HelpScreen(Screen):
     pass

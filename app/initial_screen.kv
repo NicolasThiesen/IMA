@@ -27,49 +27,43 @@
 
 
 <InitialScreen>
-    BoxLayout:
-        orientation: "vertical"
-        padding: 75
-        spacing: 30
-        Label:
-            markup: True
-            font_size: 25
-            text: "[b]Automação de Mapeamento de Infraestrutura[/b]"
-        Image:
-            source: "assets/logo-solvimm.png"
-            allow_stretch: True
-        GridLayout:
-            cols: 2
-            Label:
-                text: "Escolha um Perfil"
-                font_size: 20
-            Spinner:
-                id: spinner_id
-                text: "Profile"
-                values: []
-                on_text: root.spinner_clicked(spinner_id.text)
-                size_hint: None, None
-                height: 75
-                width: 300
-                pos_hint: {"center_x": .5, "center_y": .5}
+    FloatLayout:
         Button:
-            text: "Entrar"
-            on_release: root.handle_enter(Factory.Alert(),root)
-
-<SecondScreen>
-    name: "second"
-    BoxLayout:
-        orientation: "vertical"
-        size: root.width, root.height
-        padding: 100
-        spacing: 50
-        Image:
-            source: "assets/logo-solvimm.png"
-            allow_stretch: True
-        Spinner:
-            id: spinner_id
-            text: "Profile"
-            values: []
-            on_text: root.spinner_clicked(spinner_id.text)
-        Label:
-            text: ""
+            text: "Ajuda"
+            font_size: 20
+            size_hint: None, None
+            width: 100
+            pos_hint: {"right": 0.95, "top": 0.95}
+            on_press:
+                root.manager.current = "help_screen"
+                root.manager.transition.direction = 'left'
+        BoxLayout:
+            orientation: "vertical"
+            padding: 75
+            spacing: 30
+            Label:
+                markup: True
+                font_size: 25
+                text: "[b]Automação de Mapeamento de Infraestrutura[/b]"
+            Image:
+                source: "assets/logo-solvimm.png"
+                allow_stretch: True
+            GridLayout:
+                cols: 2
+                Label:
+                    text: "Escolha um Perfil"
+                    font_size: 20
+                Spinner:
+                    id: spinner_id
+                    text: "Profile"
+                    values: []
+                    on_text: root.spinner_clicked(spinner_id.text)
+                    size_hint: None, None
+                    height: 75
+                    width: 300
+                    pos_hint: {"center_x": .5, "center_y": .5}
+            Button:
+                text: "Entrar"
+                on_release:
+                    root.handle_enter(Factory.Alert(),root)
+                    root.manager.transition.direction = 'left'
