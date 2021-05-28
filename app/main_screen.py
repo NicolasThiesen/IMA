@@ -25,3 +25,4 @@ class MainScreen(Screen):
         else:
             _attributes.remove(instance.group)
         set_item("attributes", _attributes)
+
