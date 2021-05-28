@@ -12,30 +12,31 @@
                 root.manager.transition.direction = 'right'
         BoxLayout:
             orientation: "vertical"
-            padding: 75
+            padding: 50
             Label:
                 markup: True
                 font_size: 30
                 text: "[b]Automação[/b]"
             GridLayout
-                cols: 2
-                GridLayout:
-                    cols: 2
-                    row_force_default: True,
-                    row_default_height: 50
-                    Spinner:
-                        id: spinner_region
-                        text: "Região"
-                        values: []
-                        on_text: root.spinner_clicked(spinner_region.text, "region")
-                    Spinner:
-                        id: spinner_service
-                        text: "Serviço"
-                        values: []
-                        on_text: root.spinner_clicked(spinner_service.text, "service")
-                GridLayout:
-                    cols: 2
+                cols: 4
+                id: grid
+                row_force_default: True,
+                row_default_height: 50
+                Spinner:
+                    id: spinner_region
+                    text: "Região"
+                    values: []
+                    on_text: root.spinner_clicked(spinner_region.text, "region")
+                Spinner:
+                    id: spinner_service
+                    text: "Serviço"
+                    values: []
+                    on_text: root.spinner_clicked(spinner_service.text, "service", root)
 
+                Button:
+                    text: "Pegar informações"
+                Button:
+                    text: "Gerar arquivo"
             Label:
                 text: ""
             Label:
