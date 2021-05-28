@@ -1,50 +1,56 @@
 
 <MainScreen>
-    FloatLayout:
-        id: mainscreen
-        ScrollView:
-            do_scroll_x: False
-            do_scroll_y: True
-            bar_width: 10
-            BoxLayout:
-                id: container
-                orientation: "vertical"
-                padding: 50
-                size_hint_y: None
-                height: self.minimum_height
-                Label:
-                    markup: True
-                    font_size: 30
-                    size_hint_y: None
-                    height: 100
-                    text: "[b]Automação[/b]"
-                GridLayout
-                    cols: 4
-                    id: grid
-                    row_force_default: True,
-                    row_default_height: 50
-                    size_hint_y: None
-                    height: self.minimum_height
-                    Spinner:
-                        id: spinner_region
-                        text: "Região"
-                        values: []
-                        on_text: root.spinner_clicked(spinner_region.text, "region")
-                    Spinner:
-                        id: spinner_service
-                        text: "Serviço"
-                        values: []
-                        on_text: root.spinner_clicked(spinner_service.text, "service", root)
-                    Button:
-                        text: "Pegar informações"
-                    Button:
-                        text: "Gerar arquivo"
-        Button:
-            size_hint: None, None
-            width: 150
-            font_size: 15
-            text: "Escolher Profile"
-            pos_hint: {"top": 0.95, "x": 0.05}
-            on_press:
-                root.manager.current = "initial_screen"
-                root.manager.transition.direction = 'right'
+    TabbedPanel:
+        do_default_tab: False
+        tab_width: 150
+        background_color: (0, 0, 0, 1.0)
+        TabbedPanelItem:
+            text: "Configuração"
+            FloatLayout:
+                id: mainscreen
+                ScrollView:
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    bar_width: 10
+                    BoxLayout:
+                        id: container
+                        orientation: "vertical"
+                        padding: 50
+                        size_hint_y: None
+                        height: self.minimum_height
+                        Label:
+                            markup: True
+                            font_size: 30
+                            size_hint_y: None
+                            height: 100
+                            text: "[b]Automação[/b]"
+                        GridLayout
+                            cols: 4
+                            id: grid
+                            row_force_default: True,
+                            row_default_height: 50
+                            size_hint_y: None
+                            height: self.minimum_height
+                            Spinner:
+                                id: spinner_region
+                                text: "Região"
+                                values: []
+                                on_text: root.spinner_clicked(spinner_region.text, "region")
+                            Spinner:
+                                id: spinner_service
+                                text: "Serviço"
+                                values: []
+                                on_text: root.spinner_clicked(spinner_service.text, "service", root)
+                            Button:
+                                text: "Pegar informações"
+                            Button:
+                                text: "Gerar arquivo"
+                Button:
+                    size_hint: None, None
+                    width: 150
+                    font_size: 15
+                    text: "Escolher Profile"
+                    pos_hint: {"top": 0.95, "x": 0.05}
+                    on_press:
+                        root.manager.current = "initial_screen"
+                        root.manager.transition.direction = 'right'
