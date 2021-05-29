@@ -1,4 +1,3 @@
-from modules.handle_cache import set_item
 from modules.handle_database import get_service_id, get_attributes
 from kivy.uix.checkbox import CheckBox
 from kivy.uix.label import Label
