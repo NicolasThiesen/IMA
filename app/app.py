@@ -7,7 +7,6 @@ from initial_screen import InitialScreen
 from kivy.config import Config
 from main_screen import MainScreen
 from modules.handle_cache import set_initial_structure
-from modules.handle_frontend import show_attributes
 
 # define the icon
 Config.set('kivy','window_icon','assets/logo-solvimm.png')
