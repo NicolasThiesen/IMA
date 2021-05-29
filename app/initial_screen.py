@@ -1,8 +1,6 @@
 from kivy.uix.screenmanager import Screen
-
 from modules.handle_cache import set_item
 from modules.session_manager import get_profiles
-from modules.session_manager import configure_session
 
 
 class InitialScreen(Screen):

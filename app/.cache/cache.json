@@ -1,11 +1,6 @@
 {
-    "attributes": [
-        "InstanceId",
-        "InstanceType",
-        "PrivateDnsName",
-        "Tags"
-    ],
+    "attributes": [],
     "profile": "default",
     "region": "",
-    "service": "EC2"
+    "service": ""
 }
