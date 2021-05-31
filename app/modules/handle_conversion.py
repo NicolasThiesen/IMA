@@ -1,3 +1,5 @@
+from pandas import DataFrame
+
 def get_items_from_dic(dic, attributes):
     _list = []
     for l in dic["Reservations"]:
@@ -8,5 +10,7 @@ def get_items_from_dic(dic, attributes):
     return _list
 
 
-def conversion(format, dic):
-    pass
+def conversion(format, dic, path):
+    _df = DataFrame.from_dict(dic, orient="index")
+    if format == "csv":
+        return _df.to_csv(path+"result")
