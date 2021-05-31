@@ -14,3 +14,5 @@ def conversion(format, dic, path):
     _df = DataFrame.from_dict(dic, orient="index")
     if format == "csv":
         return _df.to_csv(path+"result")
+    elif format == "excel":
+        return _df.to_excel(path+"result")
