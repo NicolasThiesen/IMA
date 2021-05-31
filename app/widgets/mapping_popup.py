@@ -11,8 +11,11 @@ class Mapping(Popup):
 
     def __init__(self, **kwargs):
         super(Mapping, self).__init__(**kwargs)
-        _client = configure_session()
-        _res = handle_describe(_client, get_command(get_item("service")))
+        try:
+            _client = configure_session()
+            _res = handle_describe(_client, get_command(get_item("service")))
+        except Exception as err:
+            print(err)
         _show = get_items_from_dic(_res, get_item("attributes"))
         self.ids.result.text = dumps(_show, indent=4, sort_keys=True, default=str)
         set_item("result", _res)
@@ -26,4 +29,4 @@ class Mapping(Popup):
             result = loads(self.ids.result.text)
         except:
             result = self.ids.result.text
-        set_item("result", result)
+        set_item("result_with_attributes", result)

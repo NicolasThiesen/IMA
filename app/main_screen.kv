@@ -2,6 +2,8 @@
 #:import Factory kivy.factory.Factory
 #:import Mapping widgets.mapping_popup
 #:import MFA widgets.mfa_popup
+#:import Convert widgets.convert_popup
+
 
 <ButtonPopup@Button>:
     font_size: 20
@@ -29,13 +31,17 @@
                 text: "Excel"
             CheckBox:
                 group: "convert"
+                on_active: root.radio_click(self, self.active, "excel")
             Label:
                 text: "CSV"
             CheckBox:
                 group: "convert"
+                on_active: root.radio_click(self, self.active, "csv")
         ButtonPopup:
             text: "Gerar arquivo"
-            on_release: root.dismiss()
+            on_release:
+                root.handle_convert()
+                root.dismiss()
 
 <MFA@Popup>
     title: "MFA"
