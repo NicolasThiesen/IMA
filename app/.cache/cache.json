@@ -1,6 +1,153 @@
 {
-    "attributes": [],
-    "profile": "default",
-    "region": "",
-    "service": ""
+    "attributes": [
+        "InstanceId",
+        "InstanceType",
+        "PrivateDnsName",
+        "Tags"
+    ],
+    "mfa": "928571",
+    "mfa_serial": "arn:aws:iam::247072972263:mfa/nicolas.thiesen",
+    "profile": "fazGame_readOnly",
+    "region": "us-east-1",
+    "result": [
+        {
+            "InstanceId": "i-466662d8",
+            "InstanceType": "t2.small",
+            "PrivateDnsName": "ip-10-0-0-37.ec2.internal",
+            "Tags": [
+                {
+                    "Key": "Environment",
+                    "Value": "development"
+                },
+                {
+                    "Key": "Name",
+                    "Value": "fazgame-ec2-dev-new"
+                },
+                {
+                    "Key": "Owner",
+                    "Value": "vanessa.marques"
+                },
+                {
+                    "Key": "Role",
+                    "Value": "web-server"
+                }
+            ]
+        },
+        {
+            "InstanceId": "i-01f81361dc671abef",
+            "InstanceType": "m5.xlarge",
+            "PrivateDnsName": "ip-10-0-0-146.ec2.internal",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "Unity FazGame"
+                }
+            ]
+        },
+        {
+            "InstanceId": "i-0a526aad545b53faf",
+            "InstanceType": "t2.medium",
+            "PrivateDnsName": "ip-10-0-2-224.ec2.internal",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "fazgame-dev"
+                }
+            ]
+        },
+        {
+            "InstanceId": "i-0bbdc819c96e5d6b2",
+            "InstanceType": "t2.micro",
+            "PrivateDnsName": "ip-10-251-4-145.ec2.internal",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "EC2-Bastion"
+                }
+            ]
+        },
+        {
+            "InstanceId": "i-0cf444c0432ea5846",
+            "InstanceType": "t3a.medium",
+            "PrivateDnsName": "ip-10-251-13-35.ec2.internal",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "EC2-Moodle"
+                }
+            ]
+        },
+        {
+            "InstanceId": "i-0d7eb0ebdb19d4ac3",
+            "InstanceType": "c5.large",
+            "PrivateDnsName": "ip-10-0-1-249.ec2.internal",
+            "Tags": [
+                {
+                    "Key": "aws:cloudformation:logical-id",
+                    "Value": "AWSEBAutoScalingGroup"
+                },
+                {
+                    "Key": "elasticbeanstalk:environment-id",
+                    "Value": "e-cch2m5t7ih"
+                },
+                {
+                    "Key": "Name",
+                    "Value": "Fazgame-env-prdnew"
+                },
+                {
+                    "Key": "aws:cloudformation:stack-name",
+                    "Value": "awseb-e-cch2m5t7ih-stack"
+                },
+                {
+                    "Key": "aws:autoscaling:groupName",
+                    "Value": "awseb-e-cch2m5t7ih-stack-AWSEBAutoScalingGroup-1T39JJ8INCYOM"
+                },
+                {
+                    "Key": "elasticbeanstalk:environment-name",
+                    "Value": "Fazgame-env-prdnew"
+                },
+                {
+                    "Key": "aws:cloudformation:stack-id",
+                    "Value": "arn:aws:cloudformation:us-east-1:029230725606:stack/awseb-e-cch2m5t7ih-stack/c34a1fd0-4e95-11ea-a8e5-0ec9495d5707"
+                }
+            ]
+        },
+        {
+            "InstanceId": "i-09820846fb178297b",
+            "InstanceType": "t3a.small",
+            "PrivateDnsName": "ip-10-0-0-135.ec2.internal",
+            "Tags": [
+                {
+                    "Key": "elasticbeanstalk:environment-name",
+                    "Value": "Fazgame-hmg-env"
+                },
+                {
+                    "Key": "Name",
+                    "Value": "Fazgame-hmg-env"
+                },
+                {
+                    "Key": "aws:cloudformation:stack-name",
+                    "Value": "awseb-e-nfbmvgbdi6-stack"
+                },
+                {
+                    "Key": "aws:cloudformation:stack-id",
+                    "Value": "arn:aws:cloudformation:us-east-1:029230725606:stack/awseb-e-nfbmvgbdi6-stack/a6449990-b737-11eb-92e6-1249719cb5f1"
+                },
+                {
+                    "Key": "aws:autoscaling:groupName",
+                    "Value": "awseb-e-nfbmvgbdi6-stack-AWSEBAutoScalingGroup-WMO2H9YCPJ2"
+                },
+                {
+                    "Key": "aws:cloudformation:logical-id",
+                    "Value": "AWSEBAutoScalingGroup"
+                },
+                {
+                    "Key": "elasticbeanstalk:environment-id",
+                    "Value": "e-nfbmvgbdi6"
+                }
+            ]
+        }
+    ],
+    "role_arn": "arn:aws:iam::029230725606:role/CrossAccountAccess-CrossAccountReadOnlyRole",
+    "service": "EC2"
 }

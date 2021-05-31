@@ -1,14 +1,8 @@
 from kivy.uix.screenmanager import Screen
-from modules.handle_describe import handle_describe
-from modules.handle_database import get_regions, get_services, get_command
+from modules.handle_database import get_regions, get_services
 from modules.handle_cache import set_item, get_item
 from modules.handle_frontend import show_attributes
-from modules.session_manager import configure_session
-import asyncio
-from kivy.uix.floatlayout import FloatLayout
 
-class ConfigTab(FloatLayout):
-    pass
 
 class MainScreen(Screen):
 

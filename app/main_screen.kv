@@ -1,5 +1,14 @@
 #:kivy 2.0.0
 #:import Factory kivy.factory.Factory
+#:import Mapping widgets.mapping_popup
+#:import MFA widgets.mfa_popup
+
+<ButtonPopup@Button>:
+    font_size: 20
+    size_hint: None, None
+    height: 50
+    width: 200
+    pos_hint: {"center_x": 0.5}
 
 <Convert@Popup>:
     id: convert
@@ -11,11 +20,10 @@
         FileChooserIconView:
             id: chooser
             path: "/Users"
-        GridLayout
+        GridLayout:
             row_force_default: True,
             row_default_height: 50
             size_hint_y: None
-            height: self.minimum_height
             cols: 4
             Label:
                 text: "Excel"
@@ -25,15 +33,55 @@
                 text: "CSV"
             CheckBox:
                 group: "convert"
-        Button:
+        ButtonPopup:
             text: "Gerar arquivo"
-            font_size: 20
             on_release: root.dismiss()
-            size_hint: None, None
-            height: 50
-            width: 200
-            pos_hint: {"center_x": 0.5}
 
+<MFA@Popup>
+    title: "MFA"
+    size_hint: 0.4, 0.4
+    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    BoxLayout:
+        padding: 25
+        orientation: "vertical"
+        Label:
+            text: "Digite o MFA no campo abaixo:"
+        TextInput:
+            id: mfa
+            multiline: False
+            size_hint_y: None
+            height: 40
+        ButtonPopup:
+            text: "Mapear"
+            on_press:
+                root.set_mfa()
+                root.dismiss()
+                Factory.Mapping().open()
+
+<Mapping@Popup>:
+    id: info
+    title: "Resultado do Mapeamento"
+    size_hint: 0.7, 0.7
+    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    BoxLayout:
+        orientation: "vertical"
+        height: self.minimum_height
+        Button:
+            text: "Copiar"
+            size_hint: None, None
+            height: 40
+            width: 100
+            pos_hint: {"right": 1}
+            on_press:
+                root.handle_copy()
+        TextInput:
+            id: result
+            multiline: True
+        ButtonPopup:
+            text: "Continuar"
+            on_press:
+                root.handle_save_cache()
+                root.dismiss()
 
 <MainScreen>
     TabbedPanel:
@@ -59,8 +107,8 @@
                             font_size: 30
                             size_hint_y: None
                             height: 100
-                            text: "[b]Automação[/b]"
-                        GridLayout
+                            text: "[b]Mapeamento[/b]"
+                        GridLayout:
                             cols: 4
                             id: grid
                             row_force_default: True,
@@ -78,7 +126,9 @@
                                 values: []
                                 on_text: root.spinner_clicked(spinner_service.text, "service", root)
                             Button:
-                                text: "Pegar informações"
+                                text: "Mapear"
+                                on_press:
+                                    Factory.MFA().open()
                             Button:
                                 text: "Gerar arquivo"
                                 on_press:
