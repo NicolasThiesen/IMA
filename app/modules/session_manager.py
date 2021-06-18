@@ -1,6 +1,6 @@
 from boto3 import client
 from subprocess import check_output
-from modules.handle_cache import get_item
+from modules.handle_cache import get_item, set_item
 from modules.handle_database import get_command
 
 
@@ -10,11 +10,17 @@ def configure_session():
                                    RoleSessionName=get_item("profile"),
                                    SerialNumber=get_item("mfa_serial"),
                                    TokenCode=get_item("mfa"))
+    set_item("AccessKeyId", _res["Credentials"]["AccessKeyId"])
+    set_item("SecretAccessKey", _res["Credentials"]["SecretAccessKey"])
+    set_item("SessionToken", _res["Credentials"]["SessionToken"])
+
+
+def get_client():
     _client = client(region_name=get_item("region"),
                      service_name=get_command(get_item("service")),
-                     aws_access_key_id=_res['Credentials']['AccessKeyId'],
-                     aws_secret_access_key=_res['Credentials']['SecretAccessKey'],
-                     aws_session_token=_res['Credentials']['SessionToken'])
+                     aws_access_key_id=get_item('AccessKeyId'),
+                     aws_secret_access_key=get_item('SecretAccessKey'),
+                     aws_session_token=get_item('SessionToken'))
     return _client
 
 

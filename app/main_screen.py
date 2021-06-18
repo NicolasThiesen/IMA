@@ -14,6 +14,7 @@ class MainScreen(Screen):
     def spinner_clicked(self, value, key, root=None):
         set_item(key, value)
         if key == "service":
+            set_item("attributes", [])
             show_attributes(self, value)
 
     def handle_checkbox(self, instance, value):
@@ -21,5 +22,13 @@ class MainScreen(Screen):
         if value:
             _attributes.append(instance.group)
         else:
-            _attributes.remove(instance.group)
+            if instance.group in _attributes:
+                _attributes.remove(instance.group)
         set_item("attributes", _attributes)
+
+    def handle_mfa(self, MFA, Mapping):
+        _access = get_item("AccessKeyId")
+        if _access:
+            Mapping().open()
+        else:
+            MFA().open()

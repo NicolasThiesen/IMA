@@ -1,11 +1,16 @@
 from kivy.uix.popup import Popup
 from modules.handle_conversion import get_items_from_dic, conversion
 from modules.handle_cache import get_item
-
+from pathlib import Path
 
 class Convert(Popup):
     global format_item
     format_item = ""
+
+    def __init__(self, **kwargs):
+        super(Convert, self).__init__(**kwargs)
+        path = Path("../../../")
+        self.ids.chooser.path = str(path.resolve())
 
     def radio_click(self, instance, value,  _format):
         global format_item

@@ -27,4 +27,7 @@ def get_item(key):
     json_file = open(".cache/cache.json")
     data = load(json_file)
     json_file.close()
-    return data[key]
+    if key in data:
+        return data[key]
+    else:
+        return False

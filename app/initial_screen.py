@@ -18,7 +18,7 @@ class InitialScreen(Screen):
 
     def handle_enter(self, alert, root):
         global profile
-        if(profile == None):
+        if profile is None:
             alert.open()
         else:
             set_item("mfa_serial", get_item_aws_file(profile, "mfa_serial"))

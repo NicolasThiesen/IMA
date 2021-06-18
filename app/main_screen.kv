@@ -116,7 +116,6 @@
                             text: "[b]Mapeamento[/b]"
                         GridLayout:
                             cols: 4
-                            id: grid
                             row_force_default: True,
                             row_default_height: 50
                             size_hint_y: None
@@ -134,11 +133,18 @@
                             Button:
                                 text: "Mapear"
                                 on_press:
-                                    Factory.MFA().open()
+                                    root.handle_mfa(Factory.MFA, Factory.Mapping)
                             Button:
                                 text: "Gerar arquivo"
                                 on_press:
                                     Factory.Convert().open()
+                        GridLayout:
+                            cols: 4
+                            id: grid
+                            row_force_default: True,
+                            row_default_height: 50
+                            size_hint_y: None
+                            height: self.minimum_height               
                 Button:
                     size_hint: None, None
                     width: 150
