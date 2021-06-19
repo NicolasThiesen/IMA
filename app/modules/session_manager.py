@@ -1,5 +1,5 @@
 from boto3 import client
-from subprocess import check_output
+from subprocess import check_output, run
 from modules.handle_cache import get_item, set_item
 from modules.handle_database import get_command
 
@@ -22,6 +22,15 @@ def get_client():
                      aws_secret_access_key=get_item('SecretAccessKey'),
                      aws_session_token=get_item('SessionToken'))
     return _client
+
+
+def set_profile(profile_name, mfa_serial, role_arn):
+    try:
+        run(f"aws configure set profile.{profile_name}.mfa_serial {mfa_serial}", shell=True)
+        run(f"aws configure set profile.{profile_name}.role_arn {role_arn}", shell=True)
+        run(f"aws configure set profile.{profile_name}.source_profile default", shell=True)
+    except:
+        print("Erro ao adicionar um novo profile")
 
 
 def get_profiles():

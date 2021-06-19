@@ -15,6 +15,8 @@
     BoxLayout:
         orientation: "vertical"
         Label:
+            id: alert_text
+            markup: True
             text: "Você precisa escolher um Perfil antes de prosseguir"
         Button:
             text: "Ok"
@@ -38,13 +40,13 @@
                 root.manager.current = "help_screen"
                 root.manager.transition.direction = 'left'
         Button:
-            text: "Adicionar Profile"
+            text: "Adicionar Perfil"
             font_size: 20
             size_hint: None, None
             width: 200
             pos_hint: {"x": 0.05, "top": 0.95}
             on_press:
-                root.manager.current = "help_screen"
+                root.manager.current = "profile_screen"
                 root.manager.transition.direction = 'right'
         BoxLayout:
             orientation: "vertical"

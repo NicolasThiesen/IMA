@@ -1,5 +1,5 @@
 from kivy.uix.screenmanager import Screen
-from modules.handle_cache import set_item, get_item
+from modules.handle_cache import set_item
 from modules.session_manager import get_profiles
 from modules.session_manager import get_item_aws_file
 
