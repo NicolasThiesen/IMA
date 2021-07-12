@@ -1,14 +1,18 @@
 
 def handle_describe(client, command):
     if command == "ec2":
-        return describe_instances(client)
+        return client.describe_instances()
     elif command == "autoscaling":
-        return describe_autoscaling(client)
+        return client.describe_auto_scaling_groups()
+    elif command == "ecs":
+        return client.describe_clusters()
+    elif command == "ebs":
+        return client.describe_applications()
+    elif command == "elb" or command == "elbv2":
+        return client.describe_load_balancers()
+    elif command == "elasticbeanstalk":
+        return client.describe_environments()
+    elif command == "rds":
+        return client.describe_db_clusters()
 
 
-def describe_instances(client):
-    return client.describe_instances()
-
-
-def describe_autoscaling(client):
-    return client.describe_auto_scaling_groups()

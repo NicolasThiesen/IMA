@@ -9,7 +9,9 @@ class MainScreen(Screen):
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
         self.ids.spinner_region.values = get_regions()
-        self.ids.spinner_service.values = get_services()
+        _services = get_services()
+        _services.sort()
+        self.ids.spinner_service.values = _services
 
     def spinner_clicked(self, value, key, root=None):
         set_item(key, value)

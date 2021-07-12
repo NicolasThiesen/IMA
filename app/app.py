@@ -1,3 +1,6 @@
+import os, sys
+from kivy.resources import resource_add_path, resource_find
+
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
@@ -10,7 +13,7 @@ from screens.main.main_screen import MainScreen
 from modules.handle_cache import set_initial_structure
 
 # define the icon
-Config.set('kivy', 'window_icon', 'assets/logo-solvimm.png')
+Config.set('kivy', 'window_icon', 'assets/icon.png')
 
 # Import the Kivy Files
 Builder.load_file("screens/initial/initial_screen.kv")
@@ -31,5 +34,7 @@ class IMA(App):
 
 
 if __name__ == '__main__':
+    if hasattr(sys, '_MEIPASS'):
+        resource_add_path(os.path.join(sys._MEIPASS))
     set_initial_structure()
     IMA().run()

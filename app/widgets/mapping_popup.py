@@ -2,7 +2,7 @@ from kivy.uix.popup import Popup
 from kivy.core.clipboard import Clipboard
 from json import loads, dumps
 from modules.handle_cache import set_item, get_item
-from modules.handle_database import get_command
+from modules.handle_database import get_command, get_key
 from modules.session_manager import configure_session, get_client
 from modules.handle_describe import handle_describe
 from modules.handle_conversion import get_items_from_dic
@@ -17,12 +17,15 @@ class Mapping(Popup):
             if not _access:
                 configure_session()
             _client = get_client()
-            _res = handle_describe(_client, get_command(get_item("service")))
-            _show = get_items_from_dic(_res, get_item("attributes"))
+            _command = get_command(get_item("service"))
+            _key = get_key(_command)
+            _res = handle_describe(_client, _command)
+            _show = get_items_from_dic(_res, get_item("attributes"), _command, _key)
             self.ids.result.text = dumps(_show, indent=4, sort_keys=True, default=str)
             set_item("result", _res)
         except Exception as err:
             print(err)
+
     def handle_copy(self):
         Clipboard.copy(self.ids.result.text)
 

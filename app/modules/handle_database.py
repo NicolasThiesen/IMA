@@ -42,3 +42,7 @@ def get_service_id(service):
 
 def get_attributes(service_id):
     return command_return_list("SELECT attribute, is_default FROM attributes WHERE service_id=:id", {"id": service_id}, many_items=True)
+
+
+def get_key(command):
+    return command_return_one("SELECT key_to_get FROM services WHERE command=:command", {"command": command})
