@@ -35,7 +35,7 @@ pip3 install -r requirements.txt
 3. Rode a aplicação
 ```shell
 cd app
-python3 app.py
+python app.py
 ```
 
 ## ENG: 
@@ -73,5 +73,5 @@ pip3 install -r requirements.txt
 3. Run the application:
 ```shell
 cd app
-python3 app.py
+python app.py
 ```

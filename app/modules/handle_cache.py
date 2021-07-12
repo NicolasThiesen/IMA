@@ -1,7 +1,11 @@
 from json import dumps, load
-
+from os import mkdir
 
 def set_initial_structure():
+    try:
+        mkdir(".cache")
+    except:
+        print("Directory .cache already installed")
     json_file = open(".cache/cache.json", "w+")
     json_structure = {
         "profile": "",
