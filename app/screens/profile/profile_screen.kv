@@ -1,0 +1,66 @@
+#:kivy 2.0.0
+#:import Factory kivy.factory.Factory
+
+<ProfileScreen>
+    FloatLayout:
+        BoxLayout:
+            id: container
+            orientation: "vertical"
+            padding: 50
+            spacing: 50
+            Label:
+                markup: True
+                font_size: 30
+                size_hint_y: None
+                height: 100
+                text: "[b]Adicionar Perfil[/b]"
+            GridLayout:
+                cols: 2
+                row_force_default: True,
+                row_default_height: 30
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [100,5,100,5]
+                spacing: [0, 50]
+                Label:
+                    text: "Nome do Perfil"
+                    font_size: 20
+                    pos_hint: {"center_y": 1}
+                TextInput:
+                    id: perfil_name
+                    multiline: False
+                    size_hint_y: None
+                    height: 30
+                Label:
+                    text: "MFA Serial"
+                    font_size: 20
+                TextInput:
+                    id: mfa_serial
+                    multiline: False
+                    size_hint_y: None
+                    height: 30
+                Label:
+                    text: "Role ARN"
+                    font_size: 20
+                TextInput:
+                    id: role_arn
+                    multiline: False
+                    size_hint_y: None
+                    height: 30
+            Button:
+                text: "Adicionar"
+                size_hint: None, None
+                width: 200
+                pos_hint: {"center_x": 0.5}
+                on_release:
+                    root.handle_add(Factory.Alert)
+            Label:
+        Button:
+            text: "Voltar"
+            font_size: 20
+            size_hint: None, None
+            width: 100
+            pos_hint: {"right": 0.95, "top": 0.95}
+            on_press:
+                root.manager.current = "initial_screen"
+                root.manager.transition.direction = 'left'

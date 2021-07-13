@@ -1,0 +1,3 @@
+kivy
+boto3
+pandas

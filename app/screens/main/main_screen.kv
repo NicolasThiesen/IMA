@@ -1,0 +1,158 @@
+#:kivy 2.0.0
+#:import Factory kivy.factory.Factory
+#:import Mapping widgets.mapping_popup
+#:import MFA widgets.mfa_popup
+#:import Convert widgets.convert_popup
+
+
+<ButtonPopup@Button>:
+    font_size: 20
+    size_hint: None, None
+    height: 50
+    width: 200
+    pos_hint: {"center_x": 0.5}
+
+<Convert@Popup>:
+    id: convert
+    title: "Converter"
+    size_hint: 0.85, 0.85
+    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    BoxLayout:
+        orientation: "vertical"
+        FileChooserIconView:
+            id: chooser
+            path: "/Users"
+        GridLayout:
+            row_force_default: True,
+            row_default_height: 50
+            size_hint_y: None
+            cols: 4
+            Label:
+                text: "Excel"
+            CheckBox:
+                group: "convert"
+                on_active: root.radio_click(self, self.active, "excel")
+            Label:
+                text: "CSV"
+            CheckBox:
+                group: "convert"
+                on_active: root.radio_click(self, self.active, "csv")
+        ButtonPopup:
+            text: "Gerar arquivo"
+            on_release:
+                root.handle_convert()
+                root.dismiss()
+
+<MFA@Popup>
+    title: "MFA"
+    size_hint: 0.4, 0.4
+    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    BoxLayout:
+        padding: 25
+        orientation: "vertical"
+        Label:
+            text: "Digite o MFA no campo abaixo:"
+        TextInput:
+            id: mfa
+            multiline: False
+            size_hint_y: None
+            height: 40
+        ButtonPopup:
+            text: "Mapear"
+            on_press:
+                root.set_mfa()
+                root.dismiss()
+                Factory.Mapping().open()
+
+<Mapping@Popup>:
+    id: info
+    title: "Resultado do Mapeamento"
+    size_hint: 0.7, 0.7
+    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    BoxLayout:
+        orientation: "vertical"
+        height: self.minimum_height
+        Button:
+            text: "Copiar"
+            size_hint: None, None
+            height: 40
+            width: 100
+            pos_hint: {"right": 1}
+            on_press:
+                root.handle_copy()
+        TextInput:
+            id: result
+            multiline: True
+        ButtonPopup:
+            text: "Continuar"
+            on_press:
+                root.handle_save_cache()
+                root.dismiss()
+
+<MainScreen>
+    TabbedPanel:
+        do_default_tab: False
+        tab_width: 200
+        background_color: (0, 0, 0, 1.0)
+        TabbedPanelItem:
+            text: "Mapeamento"
+            FloatLayout:
+                id: mainscreen
+                ScrollView:
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    bar_width: 10
+                    BoxLayout:
+                        id: container
+                        orientation: "vertical"
+                        padding: 50
+                        size_hint_y: None
+                        height: self.minimum_height
+                        Label:
+                            markup: True
+                            font_size: 30
+                            size_hint_y: None
+                            height: 100
+                            text: "[b]Mapeamento[/b]"
+                        GridLayout:
+                            cols: 4
+                            row_force_default: True,
+                            row_default_height: 50
+                            size_hint_y: None
+                            height: self.minimum_height
+                            Spinner:
+                                id: spinner_region
+                                text: "Região"
+                                values: []
+                                on_text: root.spinner_clicked(spinner_region.text, "region")
+                            Spinner:
+                                id: spinner_service
+                                text: "Serviço"
+                                values: []
+                                on_text: root.spinner_clicked(spinner_service.text, "service", root)
+                            Button:
+                                text: "Mapear"
+                                on_press:
+                                    root.handle_mfa(Factory.MFA, Factory.Mapping)
+                            Button:
+                                text: "Gerar arquivo"
+                                on_press:
+                                    Factory.Convert().open()
+                        GridLayout:
+                            cols: 4
+                            id: grid
+                            row_force_default: True,
+                            row_default_height: 50
+                            size_hint_y: None
+                            height: self.minimum_height               
+                Button:
+                    size_hint: None, None
+                    width: 150
+                    font_size: 15
+                    text: "Escolher Profile"
+                    pos_hint: {"top": 0.95, "x": 0.05}
+                    on_press:
+                        root.manager.current = "initial_screen"
+                        root.manager.transition.direction = 'right'
+        TabbedPanelItem:
+            text: "Criação de alarme"

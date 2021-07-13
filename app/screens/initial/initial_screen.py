@@ -1,9 +1,7 @@
 from kivy.uix.screenmanager import Screen
-
 from modules.handle_cache import set_item
 from modules.session_manager import get_profiles
-from modules.session_manager import configure_session
-
+from modules.session_manager import get_item_aws_file
 
 class InitialScreen(Screen):
     global profile
@@ -20,7 +18,9 @@ class InitialScreen(Screen):
 
     def handle_enter(self, alert, root):
         global profile
-        if(profile == None):
+        if profile is None:
             alert.open()
         else:
+            set_item("mfa_serial", get_item_aws_file(profile, "mfa_serial"))
+            set_item("role_arn", get_item_aws_file(profile, "role_arn"))
             root.manager.current = "main_screen"
