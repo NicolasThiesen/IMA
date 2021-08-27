@@ -1,3 +1,4 @@
+from re import A
 from pandas import DataFrame
 from os import path as p
 
@@ -9,9 +10,14 @@ def get_items_from_dic(dic, attributes, command, key):
     for l in dic[key]:
         _dic = {}
         for attribute in attributes:
-            if attribute not in l:
-                print(attribute)
-            _dic[attribute] = l[attribute]
+            if "." in attribute:
+                attrs = attribute.split(".")
+                if len(l[attrs[0]]) > 0:
+                    _dic[attrs[1]] = l[attrs[0]][0][attrs[1]]
+            elif attribute not in l:
+                print(f"Attribute {attribute} doesn't exist")
+            else: 
+                _dic[attribute] = l[attribute]
         _list.append(_dic)
     return _list
 
