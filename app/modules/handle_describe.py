@@ -7,7 +7,7 @@ def handle_describe(client, command):
     elif command == "ecs":
         return client.describe_clusters()
     elif command == "ebs":
-        return client.describe_applications()
+        return client.describe_volumes()
     elif command == "elb" or command == "elbv2":
         return client.describe_load_balancers()
     elif command == "elasticbeanstalk":
