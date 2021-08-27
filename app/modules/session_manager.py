@@ -16,8 +16,9 @@ def configure_session():
 
 
 def get_client():
+    _service = get_item("service")
     _client = client(region_name=get_item("region"),
-                     service_name=get_command(get_item("service")),
+                     service_name=get_command(_service if _service != "EBS" else "EC2"),
                      aws_access_key_id=get_item('AccessKeyId'),
                      aws_secret_access_key=get_item('SecretAccessKey'),
                      aws_session_token=get_item('SessionToken'))
