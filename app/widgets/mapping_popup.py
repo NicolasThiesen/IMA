@@ -21,6 +21,7 @@ class Mapping(Popup):
             _key = get_key(_command)
             _res = handle_describe(_client, _command)
             _show = get_items_from_dic(_res, get_item("attributes"), _command, _key)
+            set_item("result_simplificated", _show)
             self.ids.result.text = dumps(_show, indent=4, sort_keys=True, default=str)
             set_item("result", _res)
         except Exception as err:

@@ -1,5 +1,5 @@
 from kivy.uix.popup import Popup
-from modules.handle_conversion import get_items_from_dic, conversion
+from modules.handle_conversion import conversion
 from modules.handle_cache import get_item
 from pathlib import Path
 
@@ -21,8 +21,7 @@ class Convert(Popup):
         global format_item
         if format_item != "":
             try:
-                _dic = get_items_from_dic(get_item("result"), get_item("attributes"))
-                conversion(format_file=format_item, path=self.ids.chooser.path, dictionary=_dic, filename="result-"+get_item("service"))
+                conversion(format_file=format_item, path=self.ids.chooser.path, dictionary=get_item("result_simplificated"), filename=f'result_{get_item("profile")}_{get_item("service")}_{get_item("region")}')
             except Exception as error:
                 print(error)
                 print(type(get_item("result")))
